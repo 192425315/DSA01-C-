@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinSight AI | Financial Portfolio Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">F</div><div><b>FinSight</b><span>Portfolio Intelligence</span></div></div>
+    <nav>
+      <button class="nav-item active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+      <button class="nav-item" data-page="portfolio">▦ <span>My Portfolio</span></button>
+      <button class="nav-item" data-page="analysis">◒ <span>Financial Analysis</span></button>
+      <button class="nav-item" data-page="insights">✦ <span>Risk & Insights</span></button>
+      <button class="nav-item" data-page="profile">◉ <span>Profile</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="live-pill"><i></i> Demo market feed active</div>
+      <button id="resetDemo" class="ghost-btn">↻ Reset Demo Data</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">PERSONAL WEALTH CENTER</div>
+        <h1 id="pageTitle">Portfolio Dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <div class="market-status"><i></i> Market data: <b>Demo</b></div>
+        <div class="avatar" id="avatar">S</div>
+      </div>
+    </header>
+
+    <section id="dashboard" class="page active">
+      <div class="hero">
+        <div><div class="eyebrow">WELCOME BACK</div><h2 id="welcome">Your portfolio, in one view.</h2><p>Track every investment, understand performance and make data-driven decisions.</p></div>
+        <button class="primary-btn" data-page-target="portfolio">＋ Add Investment</button>
+      </div>
+      <div class="metric-grid" id="metrics"></div>
+      <div class="grid-2">
+        <div class="card chart-card"><div class="card-head"><div><h3>Portfolio Performance</h3><p>Invested value vs current value</p></div><span class="tag">Live UI</span></div><div id="performanceChart"></div></div>
+        <div class="card chart-card"><div class="card-head"><div><h3>Asset Allocation</h3><p>Current portfolio distribution</p></div></div><div id="donutChart"></div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><div class="card-head"><div><h3>Top Holdings</h3><p>Your largest positions by value</p></div><button class="text-btn" data-page-target="portfolio">View all →</button></div><div id="topHoldings"></div></div>
+        <div class="card"><div class="card-head"><div><h3>Portfolio Health</h3><p>Quick diversification snapshot</p></div></div><div id="health"></div></div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="page">
+      <div class="section-intro"><div><div class="eyebrow">MODULE 1</div><h2>My Portfolio</h2><p>One profile. Multiple investments. Complete visibility.</p></div><button class="primary-btn" id="openAdd">＋ Add Investment</button></div>
+      <div class="card filters"><input id="search" placeholder="Search investments..."><select id="typeFilter"><option value="All">All types</option><option>Stock</option><option>Mutual Fund</option><option>ETF</option><option>Bond</option><option>Fixed Deposit</option><option>Cryptocurrency</option><option>Other</option></select></div>
+      <div class="card table-card"><div class="table-wrap"><table><thead><tr><th>Investment</th><th>Type</th><th>Units</th><th>Invested</th><th>Current</th><th>P/L</th><th>ROI</th><th>Risk</th><th></th></tr></thead><tbody id="portfolioTable"></tbody></table></div></div>
+    </section>
+
+    <section id="analysis" class="page">
+      <div class="section-intro"><div><div class="eyebrow">MODULE 2</div><h2>Financial Analysis</h2><p>Measure returns across your complete investment portfolio.</p></div></div>
+      <div class="metric-grid" id="analysisMetrics"></div>
+      <div class="grid-2">
+        <div class="card chart-card"><div class="card-head"><div><h3>ROI by Investment</h3><p>Return on invested capital</p></div></div><div id="roiChart"></div></div>
+        <div class="card"><div class="card-head"><div><h3>Performance Ranking</h3><p>Best and weakest performers</p></div></div><div id="ranking"></div></div>
+      </div>
+    </section>
+
+    <section id="insights" class="page">
+      <div class="section-intro"><div><div class="eyebrow">MODULE 3</div><h2>Risk & Smart Insights</h2><p>Rule-based portfolio intelligence for your review demonstration.</p></div></div>
+      <div class="grid-2"><div class="card"><div class="card-head"><div><h3>Risk Distribution</h3><p>Exposure by asset category</p></div></div><div id="riskChart"></div></div><div class="card"><div class="card-head"><div><h3>Recommendation Engine</h3><p>Performance-based actions</p></div></div><div id="recommendations"></div></div></div>
+      <div class="card"><div class="card-head"><div><h3>Why this recommendation?</h3><p>Transparent rules — easy to explain during viva.</p></div></div><div class="rules"><div><b>ROI ≥ 10%</b><span>HOLD — strong positive performance</span></div><div><b>ROI 5–9.99%</b><span>HOLD / REVIEW — moderate performance</span></div><div><b>ROI 0–4.99%</b><span>REVIEW — monitor closely</span></div><div><b>ROI &lt; 0%</b><span>REVIEW / REDUCE — negative performance</span></div></div></div>
+    </section>
+
+    <section id="profile" class="page">
+      <div class="section-intro"><div><div class="eyebrow">ACCOUNT</div><h2>User Profile</h2><p>All investments belong to this single portfolio owner.</p></div></div>
+      <div class="card profile-card"><div class="profile-big"><div class="avatar big" id="profileAvatar">S</div><div><h2 id="profileName"></h2><p id="profileEmail"></p></div></div><div class="form-grid"><label>User ID<input id="userId"></label><label>Full Name<input id="userName"></label><label>Email<input id="userEmail"></label></div><button class="primary-btn" id="saveProfile">Save Profile</button></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal hidden" id="investmentModal">
+  <div class="modal-box"><button class="close" id="closeModal">×</button><div class="eyebrow">PORTFOLIO</div><h2 id="modalTitle">Add Investment</h2>
+    <form id="investmentForm"><input type="hidden" id="editId">
+      <div class="form-grid"><label>Investment Name<input id="invName" required placeholder="e.g. TCS"></label><label>Type<select id="invType"><option>Stock</option><option>Mutual Fund</option><option>ETF</option><option>Bond</option><option>Fixed Deposit</option><option>Cryptocurrency</option><option>Other</option></select></label><label>Quantity / Units<input id="invQty" type="number" min="0" step="0.01" required></label><label>Purchase Price (₹)<input id="invPurchase" type="number" min="0" step="0.01" required></label><label>Current Price (₹)<input id="invCurrent" type="number" min="0" step="0.01" required></label></div>
+      <div class="demo-note">Prototype uses assumed current values. Live market API can replace current prices later.</div><button class="primary-btn full" type="submit">Save Investment</button>
+    </form>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
